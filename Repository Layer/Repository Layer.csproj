@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Repository_Layer</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.16.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.16.0" />
+    <PackageReference Include="Realm" Version="10.11.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.16.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common Layer\Common Layer.csproj" />
+  </ItemGroup>
+
+</Project>
