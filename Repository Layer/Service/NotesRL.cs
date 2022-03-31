@@ -4,6 +4,7 @@ using Repository_Layer.Entity;
 using Repository_Layer.Interface;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Repository_Layer.Service
@@ -53,5 +54,105 @@ namespace Repository_Layer.Service
 
             }
         }
+
+        public NotesEntity UpdateNotes(UpdateModel noteUpdate, long noteId)
+        {
+            try
+            {
+                var result = fundooContext.NotesTable.Where(e => e.NoteId == noteId).FirstOrDefault();
+                if (result != null)
+                {
+                    result.Title = noteUpdate.Title;
+                    result.Description = noteUpdate.Description;
+                    result.Color = noteUpdate.Color;
+                    result.Image = noteUpdate.Image;
+                    fundooContext.NotesTable.Update(result);
+                    fundooContext.SaveChanges();
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        
+        public IEnumerable<NotesEntity> GetNotes(long userId)
+        {
+            try
+            {
+                var result = fundooContext.NotesTable.Where(e => e.UserId == userId).ToList();
+                if (result != null)
+                {
+                    return result;
+                }
+                else
+                {
+                    return null;
+                    
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+      
+        public IEnumerable<NotesEntity> GetNotesTableData()
+        {
+            try
+            {
+                var result = fundooContext.NotesTable.ToList();
+                if (result != null)
+                {
+                    return result;
+                }
+                else
+                {
+                     return null;
+                    
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        public bool DeleteNotes(long noteId)
+        {
+            try
+            {
+                var result = fundooContext.NotesTable.Where(e => e.NoteId == noteId).FirstOrDefault();
+                if (result != null)
+                {
+                    fundooContext.NotesTable.Remove(result);
+                    fundooContext.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }

@@ -30,5 +30,67 @@ namespace Buisness_Layer.Service
             }
         }
 
+        public NotesEntity UpdateNotes(UpdateModel noteUpdate, long noteId)
+        {
+            try
+            {
+                return notesRL.UpdateNotes(noteUpdate, noteId);
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        
+
+
+        
+        public IEnumerable<NotesEntity> GetNotes(long userId)
+        {
+            try
+            {
+                return notesRL.GetNotes(userId);
+                ;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        
+        public IEnumerable<NotesEntity> GetNotesTableData()
+        {
+            try
+            {
+                return notesRL.GetNotesTableData();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public bool DeleteNotes(long noteId)
+        {
+            try
+            {
+                return notesRL.DeleteNotes(noteId);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+
     }
 }

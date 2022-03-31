@@ -37,7 +37,7 @@ namespace Repository_Layer.Service
                 userEntity.LastName = userReg.LastName;
                 userEntity.Email = userReg.Email;
                 userEntity.Password = userReg.Password;
-                fundooContext.Add(userEntity);
+                fundooContext.UserTable.Add(userEntity);
                 int res = fundooContext.SaveChanges();
                 if (res > 0)
                     return userEntity;
