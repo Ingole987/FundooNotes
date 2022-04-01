@@ -48,11 +48,11 @@ namespace Buisness_Layer.Service
 
 
         
-        public IEnumerable<NotesEntity> GetNotes(long userId)
+        public IEnumerable<NotesEntity> GetNotes(long noteId)
         {
             try
             {
-                return notesRL.GetNotes(userId);
+                return notesRL.GetNotes(noteId);
                 ;
             }
             catch (Exception ex)
@@ -90,11 +90,11 @@ namespace Buisness_Layer.Service
             }
         }
 
-        public NotesEntity IsPinned(long userId, long NoteId)
+        public NotesEntity IsPinned(long noteId)
         {
             try
             {
-                return notesRL.IsPinned(userId, NoteId);
+                return notesRL.IsPinned(noteId);
             }
             catch (Exception ex)
             {
@@ -103,11 +103,11 @@ namespace Buisness_Layer.Service
             }
         }
 
-        public NotesEntity IsTrash(long userId, long NoteId)
+        public NotesEntity IsTrash(long noteId)
         {
             try
             {
-                return notesRL.IsTrash(userId, NoteId);
+                return notesRL.IsTrash(noteId);
             }
             catch (Exception ex)
             {
@@ -116,11 +116,11 @@ namespace Buisness_Layer.Service
             }
         }
 
-        public NotesEntity IsArchive(long userId,long NoteId)
+        public NotesEntity IsArchive(long noteId)
         {
             try
             {
-                return notesRL.IsArchive(userId, NoteId);
+                return notesRL.IsArchive(noteId);
             }
             catch (Exception ex)
             {
@@ -129,8 +129,19 @@ namespace Buisness_Layer.Service
             }
         }
 
+        public NotesEntity ColorChange(long noteId, string color)
+        {
+            try
+            {
+                return notesRL.ColorChange(noteId, color);
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
 
+        }
     }
 
 }

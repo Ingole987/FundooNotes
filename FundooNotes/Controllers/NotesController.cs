@@ -60,12 +60,12 @@ namespace FundooNotes.Controllers
         }
 
         [HttpGet("Get/NotesID")]
-        public IEnumerable<NotesEntity> GetNotes(long userId)
+        public IEnumerable<NotesEntity> GetNotes(long noteId)
         {
             try
             {
-                userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
-                var result = notesBL.GetNotes(userId);
+                long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                var result = notesBL.GetNotes(noteId);
                 if (result != null)
                     return result;
                 else
@@ -84,7 +84,7 @@ namespace FundooNotes.Controllers
         {
             try
             {
-                var userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
                 var result = notesBL.GetNotesTableData();
                 if (result != null)
                     return result;
@@ -117,12 +117,12 @@ namespace FundooNotes.Controllers
         }
 
         [HttpPatch("IsPinned")]
-        public IActionResult IsPinned(long userId, long NoteId)
+        public IActionResult IsPinned(long noteId)
         {
             try
             {
-                userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
-                var result = notesBL.IsPinned(userId, NoteId);
+                long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                var result = notesBL.IsPinned(noteId);
                 if (result != null)
                     return this.Ok(new { Success = true, message = "Deleted", data = result });
                 else
@@ -137,12 +137,12 @@ namespace FundooNotes.Controllers
         }
 
         [HttpPatch("IsTrash")]
-        public IActionResult IsTrash(long userId, long NoteId)
+        public IActionResult IsTrash(long noteId)
         {
             try
             {
-                userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
-                var result = notesBL.IsTrash(userId, NoteId);
+                long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                var result = notesBL.IsTrash(noteId);
                 if (result != null)
                     return this.Ok(new { Success = true, message = "Deleted", data = result });
                 else
@@ -157,17 +157,36 @@ namespace FundooNotes.Controllers
         }
 
         [HttpPatch("IsArchieve")]
-        public IActionResult IsArchive(long userId,long NoteId)
+        public IActionResult IsArchive(long noteId)
         {
             try
             {
-                userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
-                var result = notesBL.IsArchive(userId, NoteId);
+                long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                var result = notesBL.IsArchive(noteId);
                 if (result != null)
                     return this.Ok(new { Success = true, message = "Deleted", data = result });
                 else
                     return this.BadRequest(new { Success = false, message = "Not Deleted" });
 
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPut("ColorUpload")]
+        public IActionResult ColorChange(long noteId, string color)
+        {
+            try
+            {
+                long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                var result = notesBL.ColorChange(noteId, color);
+                if (result != null)
+                    return this.Ok(new { Success = true, message = "Color change successfully", data = result });
+                else
+                    return this.BadRequest(new { Success = false, message = "Color change fail" });
             }
             catch (Exception)
             {
