@@ -10,5 +10,6 @@ namespace Common_Layer.Models
         public string Description { get; set; }
         public string Color { get; set; }
         public string Image { get; set; }
+        public DateTime ModifiedAt { get; set; }
     }
 }

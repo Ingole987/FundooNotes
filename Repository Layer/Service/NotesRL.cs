@@ -33,7 +33,7 @@ namespace Repository_Layer.Service
                 notesEntity.IsTrash = userNotes.IsTrash;
                 notesEntity.IsPinned = userNotes.IsPinned;
                 notesEntity.ModifiedAt = userNotes.ModifiedAt;
-                notesEntity.CreateAt = userNotes.CreateAt;
+                notesEntity.CreateAt = userNotes.CreateAt = DateTime.Now;
                 notesEntity.UserId = userId;
                 fundooContext.NotesTable.Add(notesEntity);
                 int result = fundooContext.SaveChanges();
@@ -47,10 +47,10 @@ namespace Repository_Layer.Service
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
 
-                throw ex;
+                throw ;
 
             }
         }
@@ -66,6 +66,7 @@ namespace Repository_Layer.Service
                     result.Description = noteUpdate.Description;
                     result.Color = noteUpdate.Color;
                     result.Image = noteUpdate.Image;
+                    result.ModifiedAt = noteUpdate.ModifiedAt = DateTime.Now;
                     fundooContext.NotesTable.Update(result);
                     fundooContext.SaveChanges();
                     return result;
@@ -81,7 +82,7 @@ namespace Repository_Layer.Service
                 throw;
             }
         }
-        
+
         public IEnumerable<NotesEntity> GetNotes(long userId)
         {
             try
@@ -94,7 +95,7 @@ namespace Repository_Layer.Service
                 else
                 {
                     return null;
-                    
+
 
                 }
             }
@@ -106,7 +107,7 @@ namespace Repository_Layer.Service
 
         }
 
-      
+
         public IEnumerable<NotesEntity> GetNotesTableData()
         {
             try
@@ -118,8 +119,8 @@ namespace Repository_Layer.Service
                 }
                 else
                 {
-                     return null;
-                    
+                    return null;
+
 
                 }
             }
@@ -145,6 +146,100 @@ namespace Repository_Layer.Service
                 else
                 {
                     return false;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public NotesEntity IsPinned(long userId, long NoteId)
+        {
+            try
+            {
+                NotesEntity newNote = fundooContext.NotesTable.FirstOrDefault(x => x.UserId == userId && x.NoteId == NoteId);
+                if (newNote != null)
+                {
+                    bool checkpin = newNote.IsPinned;
+                    if (checkpin == true)
+                    {
+                        newNote.IsPinned = false;
+                    }
+                    if (checkpin == false)
+                    {
+                        newNote.IsPinned = true;
+                    }
+                    fundooContext.SaveChanges();
+                    return newNote;
+                }
+                else
+                {
+                    return null;
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public NotesEntity IsTrash(long userId, long NoteId)
+        {
+            try
+            {
+                NotesEntity newNote = fundooContext.NotesTable.FirstOrDefault(x => x.UserId == userId && x.NoteId == NoteId);
+                if (newNote != null)
+                {
+                    bool checkTrash = newNote.IsTrash;
+                    if (checkTrash == true)
+                    {
+                        newNote.IsTrash = false;
+                    }
+                    if (checkTrash == false)
+                    {
+                        newNote.IsTrash = true;
+                    }
+                    fundooContext.SaveChanges();
+                    return newNote;
+                }
+                else
+                {
+                    return null;
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public NotesEntity IsArchive(long userId,long NoteId)
+        {
+            try
+            {
+                NotesEntity newNote = fundooContext.NotesTable.FirstOrDefault(x => x.UserId == userId && x.NoteId == NoteId);
+                if (newNote != null)
+                {
+                    bool checkArchive = newNote.IsArchive;
+                    if (checkArchive == true)
+                    {
+                        newNote.IsArchive = false;
+                    }
+                    if (checkArchive == false)
+                    {
+                        newNote.IsArchive = true;
+                    }
+                    fundooContext.SaveChanges();
+                    return newNote;
+                }
+                else
+                {
+                    return null;
+
                 }
             }
             catch (Exception)

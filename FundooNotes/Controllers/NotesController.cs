@@ -26,7 +26,7 @@ namespace FundooNotes.Controllers
         {
             try
             {
-                long userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
+                long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
                 var result = notesBL.CreateNotes(userNotes, userId);
                 if (result != null)
                     return this.Ok(new { Success = true, message = "Note Added", data = result });
@@ -45,7 +45,7 @@ namespace FundooNotes.Controllers
         {
             try
             {
-                long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "Id").Value);
+                long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
                 var result = notesBL.UpdateNotes(notesUpdate, notesId);
                 if (result != null)
                     return this.Ok(new { Success = true, message = "Note updated", data = result });
@@ -64,7 +64,7 @@ namespace FundooNotes.Controllers
         {
             try
             {
-                userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "Id").Value);
+                userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
                 var result = notesBL.GetNotes(userId);
                 if (result != null)
                     return result;
@@ -84,7 +84,7 @@ namespace FundooNotes.Controllers
         {
             try
             {
-                var userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "Id").Value);
+                var userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
                 var result = notesBL.GetNotesTableData();
                 if (result != null)
                     return result;
@@ -102,12 +102,72 @@ namespace FundooNotes.Controllers
         {
             try
             {
-                long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "Id").Value);
+                long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
                 var result = notesBL.DeleteNotes(notesId);
                 if (result)
                     return this.Ok(new { Success = true, message = "Deleted", data = result });
                 else
                     return this.BadRequest(new { Success = false, message = "Not Deleted" });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPatch("IsPinned")]
+        public IActionResult IsPinned(long userId, long NoteId)
+        {
+            try
+            {
+                userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                var result = notesBL.IsPinned(userId, NoteId);
+                if (result != null)
+                    return this.Ok(new { Success = true, message = "Deleted", data = result });
+                else
+                    return this.BadRequest(new { Success = false, message = "Not Deleted" });
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPatch("IsTrash")]
+        public IActionResult IsTrash(long userId, long NoteId)
+        {
+            try
+            {
+                userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                var result = notesBL.IsTrash(userId, NoteId);
+                if (result != null)
+                    return this.Ok(new { Success = true, message = "Deleted", data = result });
+                else
+                    return this.BadRequest(new { Success = false, message = "Not Deleted" });
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPatch("IsArchieve")]
+        public IActionResult IsArchive(long userId,long NoteId)
+        {
+            try
+            {
+                userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                var result = notesBL.IsArchive(userId, NoteId);
+                if (result != null)
+                    return this.Ok(new { Success = true, message = "Deleted", data = result });
+                else
+                    return this.BadRequest(new { Success = false, message = "Not Deleted" });
+
             }
             catch (Exception)
             {

@@ -16,5 +16,8 @@ namespace Repository_Layer.Interface
         public IEnumerable<NotesEntity> GetNotes(long userId);
 
         public IEnumerable<NotesEntity> GetNotesTableData();
+        public NotesEntity IsPinned(long userId, long NoteId);
+        public NotesEntity IsTrash(long userId, long NoteId);
+        public NotesEntity IsArchive(long userId,long NoteId);
     }
 }
