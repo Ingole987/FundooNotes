@@ -1,11 +1,15 @@
 ﻿using Buisness_Layer.Interface;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using Common_Layer.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Repository_Layer.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 
 namespace FundooNotes.Controllers
 {
@@ -20,7 +24,7 @@ namespace FundooNotes.Controllers
         {
             this.notesBL = notesBL;
         }
-        
+
         [HttpPost("CreateNotes")]
         public IActionResult CreateNotes(UserNotes userNotes)
         {
@@ -124,9 +128,9 @@ namespace FundooNotes.Controllers
                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
                 var result = notesBL.IsPinned(noteId);
                 if (result != null)
-                    return this.Ok(new { Success = true, message = "Deleted", data = result });
+                    return this.Ok(new { Success = true, message = "Note Is Pinned", data = result });
                 else
-                    return this.BadRequest(new { Success = false, message = "Not Deleted" });
+                    return this.BadRequest(new { Success = false, message = "Note Is Not Pinned" });
 
             }
             catch (Exception)
@@ -144,9 +148,9 @@ namespace FundooNotes.Controllers
                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
                 var result = notesBL.IsTrash(noteId);
                 if (result != null)
-                    return this.Ok(new { Success = true, message = "Deleted", data = result });
+                    return this.Ok(new { Success = true, message = "Note Is Trashed", data = result });
                 else
-                    return this.BadRequest(new { Success = false, message = "Not Deleted" });
+                    return this.BadRequest(new { Success = false, message = "Note is not Trashed" });
 
             }
             catch (Exception)
@@ -164,9 +168,9 @@ namespace FundooNotes.Controllers
                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
                 var result = notesBL.IsArchive(noteId);
                 if (result != null)
-                    return this.Ok(new { Success = true, message = "Deleted", data = result });
+                    return this.Ok(new { Success = true, message = "Note Is Archieved", data = result });
                 else
-                    return this.BadRequest(new { Success = false, message = "Not Deleted" });
+                    return this.BadRequest(new { Success = false, message = "Note is not Archieved" });
 
             }
             catch (Exception)
@@ -176,7 +180,7 @@ namespace FundooNotes.Controllers
             }
         }
 
-        [HttpPut("ColorUpload")]
+        [HttpPut("ColorChange")]
         public IActionResult ColorChange(long noteId, string color)
         {
             try
@@ -186,7 +190,7 @@ namespace FundooNotes.Controllers
                 if (result != null)
                     return this.Ok(new { Success = true, message = "Color change successfully", data = result });
                 else
-                    return this.BadRequest(new { Success = false, message = "Color change fail" });
+                    return this.BadRequest(new { Success = false, message = "Color change failed" });
             }
             catch (Exception)
             {
@@ -194,6 +198,28 @@ namespace FundooNotes.Controllers
                 throw;
             }
         }
+
+        [HttpPost("Image")]
+        public IActionResult UploadImage(long noteId, IFormFile image)
+        {
+            try
+            {
+                var userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                var result = notesBL.UploadImage(noteId, image);
+                if (result != null)
+                    return this.Ok(new { Success = true, message = "Image ulpoaded successfully", data = result });
+                else
+                    return this.BadRequest(new { Success = false, message = "Image Upload fail" });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
     }
 }
+
 

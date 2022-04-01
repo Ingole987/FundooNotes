@@ -25,6 +25,11 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    "Cloudinary": {
+      "ApiKey": "353786361236396",
+      "ApiSecret": "pgMX18MD59iFk3ztUcDJi5YhWcE",
+      "Cloud": "dvsoczosd"
     }
   }
 }

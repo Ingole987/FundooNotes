@@ -69,3 +69,9 @@ C:\Users\prati\source\repos\FundooNotes\FundooNotes\bin\Debug\netcoreapp3.1\runt
 C:\Users\prati\source\repos\FundooNotes\FundooNotes\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\realm-wrappers.dll
 C:\Users\prati\source\repos\FundooNotes\FundooNotes\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\realm-wrappers.dll
 C:\Users\prati\source\repos\FundooNotes\FundooNotes\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\realm-wrappers.dll
+C:\Users\prati\source\repos\FundooNotes\FundooNotes\bin\Debug\netcoreapp3.1\CloudinaryDotNet.dll
+C:\Users\prati\source\repos\FundooNotes\FundooNotes\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\prati\source\repos\FundooNotes\FundooNotes\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+C:\Users\prati\source\repos\FundooNotes\FundooNotes\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\Users\prati\source\repos\FundooNotes\FundooNotes\bin\Debug\netcoreapp3.1\Microsoft.Extensions.WebEncoders.dll
+C:\Users\prati\source\repos\FundooNotes\FundooNotes\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
