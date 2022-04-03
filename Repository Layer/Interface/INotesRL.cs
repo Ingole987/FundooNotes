@@ -22,5 +22,6 @@ namespace Repository_Layer.Interface
         public NotesEntity IsArchive(long noteId);
         public NotesEntity ColorChange(long noteID, string color);
         public NotesEntity UploadImage(long noteId, IFormFile image);
+        public NotesEntity DeleteImage(long noteId);
     }
 }

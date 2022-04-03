@@ -45,12 +45,14 @@ namespace FundooNotes.Controllers
         }
 
         [HttpPut("Update")]
-        public IActionResult UpdateNotes(UpdateModel notesUpdate, long notesId)
+        public IActionResult UpdateNotes(UpdateModel notesUpdate, long noteId)
         {
             try
             {
                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
-                var result = notesBL.UpdateNotes(notesUpdate, notesId);
+                if (noteId <= 0)
+                    return BadRequest(new { success = false, message = "Note Id Should Be Greater Than Zero" });
+                var result = notesBL.UpdateNotes(notesUpdate, noteId);
                 if (result != null)
                     return this.Ok(new { Success = true, message = "Note updated", data = result });
                 else
@@ -64,14 +66,16 @@ namespace FundooNotes.Controllers
         }
 
         [HttpGet("Get/NotesID")]
-        public IEnumerable<NotesEntity> GetNotes(long noteId)
+        public IActionResult GetNotes(long noteId)
         {
             try
             {
                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                if (noteId <= 0)
+                    return BadRequest(new { success = false, message = "Note Id Should Be Greater Than Zero" });
                 var result = notesBL.GetNotes(noteId);
                 if (result != null)
-                    return result;
+                    return (IActionResult)result;
                 else
                     return null;
             }
@@ -102,12 +106,14 @@ namespace FundooNotes.Controllers
             }
         }
         [HttpDelete("Delete")]
-        public IActionResult DeleteNotes(long notesId)
+        public IActionResult DeleteNotes(long noteId)
         {
             try
             {
                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
-                var result = notesBL.DeleteNotes(notesId);
+                if (noteId <= 0)
+                    return BadRequest(new { success = false, message = "Note Id Should Be Greater Than Zero" });
+                var result = notesBL.DeleteNotes(noteId);
                 if (result)
                     return this.Ok(new { Success = true, message = "Deleted", data = result });
                 else
@@ -126,6 +132,8 @@ namespace FundooNotes.Controllers
             try
             {
                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                if (noteId <= 0)
+                    return BadRequest(new { success = false, message = "Note Id Should Be Greater Than Zero" });
                 var result = notesBL.IsPinned(noteId);
                 if (result != null)
                     return this.Ok(new { Success = true, message = "Note Is Pinned", data = result });
@@ -146,6 +154,8 @@ namespace FundooNotes.Controllers
             try
             {
                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                if (noteId <= 0)
+                    return BadRequest(new { success = false, message = "Note Id Should Be Greater Than Zero" });
                 var result = notesBL.IsTrash(noteId);
                 if (result != null)
                     return this.Ok(new { Success = true, message = "Note Is Trashed", data = result });
@@ -166,6 +176,8 @@ namespace FundooNotes.Controllers
             try
             {
                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                if (noteId <= 0)
+                    return BadRequest(new { success = false, message = "Note Id Should Be Greater Than Zero" });
                 var result = notesBL.IsArchive(noteId);
                 if (result != null)
                     return this.Ok(new { Success = true, message = "Note Is Archieved", data = result });
@@ -186,6 +198,8 @@ namespace FundooNotes.Controllers
             try
             {
                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                if (noteId <= 0)
+                    return BadRequest(new { success = false, message = "Note Id Should Be Greater Than Zero" });
                 var result = notesBL.ColorChange(noteId, color);
                 if (result != null)
                     return this.Ok(new { Success = true, message = "Color change successfully", data = result });
@@ -199,17 +213,42 @@ namespace FundooNotes.Controllers
             }
         }
 
-        [HttpPost("Image")]
+        [HttpPost("Upload/Image")]
         public IActionResult UploadImage(long noteId, IFormFile image)
         {
             try
             {
                 var userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                if (noteId <= 0)
+                    return BadRequest(new { success = false, message = "Note Id Should Be Greater Than Zero" });
                 var result = notesBL.UploadImage(noteId, image);
                 if (result != null)
                     return this.Ok(new { Success = true, message = "Image ulpoaded successfully", data = result });
                 else
                     return this.BadRequest(new { Success = false, message = "Image Upload fail" });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
+
+        [HttpDelete("Delete/Image")]
+        public IActionResult DeleteImage(long noteId)
+        {
+            try
+            {
+                var userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                if (noteId <= 0)
+                    return BadRequest(new { success = false, message = "Note Id Should Be Greater Than Zero" });
+                var result = notesBL.DeleteImage(noteId);
+                if (result != null)
+                    return this.Ok(new { Success = true, message = "Image Deleted successfully", data = result }  );
+                else
+                    return this.BadRequest(new { Success = false, message = "Image Delete fail" });
             }
             catch (Exception)
             {

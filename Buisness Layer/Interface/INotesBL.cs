@@ -19,5 +19,6 @@ namespace Buisness_Layer.Interface
         public NotesEntity IsArchive(long noteId);
         public NotesEntity ColorChange(long noteId, string color);
         public NotesEntity UploadImage(long noteId, IFormFile image);
+        public NotesEntity DeleteImage(long noteId);
     }
 }

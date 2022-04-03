@@ -143,6 +143,7 @@ namespace Repository_Layer.Service
                 if (result != null)
                 {
                     fundooContext.NotesTable.Remove(result);
+                    result.ModifiedAt = DateTime.Now;
                     fundooContext.SaveChanges();
                     return true;
                 }
@@ -162,20 +163,21 @@ namespace Repository_Layer.Service
         {
             try
             {
-                NotesEntity newNote = fundooContext.NotesTable.FirstOrDefault(x =>x.NoteId == noteId);
-                if (newNote != null)
+                NotesEntity result = fundooContext.NotesTable.FirstOrDefault(x =>x.NoteId == noteId);
+                if (result != null)
                 {
-                    bool checkpin = newNote.IsPinned;
+                    bool checkpin = result.IsPinned;
                     if (checkpin == true)
                     {
-                        newNote.IsPinned = false;
+                        result.IsPinned = false;
                     }
                     if (checkpin == false)
                     {
-                        newNote.IsPinned = true;
+                        result.IsPinned = true;
                     }
+                    result.ModifiedAt = DateTime.Now;
                     fundooContext.SaveChanges();
-                    return newNote;
+                    return result;
                 }
                 else
                 {
@@ -193,20 +195,21 @@ namespace Repository_Layer.Service
         {
             try
             {
-                NotesEntity newNote = fundooContext.NotesTable.FirstOrDefault(x =>x.NoteId == noteId);
-                if (newNote != null)
+                NotesEntity result = fundooContext.NotesTable.FirstOrDefault(x =>x.NoteId == noteId);
+                if (result != null)
                 {
-                    bool checkTrash = newNote.IsTrash;
+                    bool checkTrash = result.IsTrash;
                     if (checkTrash == true)
                     {
-                        newNote.IsTrash = false;
+                        result.IsTrash = false;
                     }
                     if (checkTrash == false)
                     {
-                        newNote.IsTrash = true;
+                        result.IsTrash = true;
                     }
+                    result.ModifiedAt = DateTime.Now;
                     fundooContext.SaveChanges();
-                    return newNote;
+                    return result;
                 }
                 else
                 {
@@ -224,20 +227,22 @@ namespace Repository_Layer.Service
         {
             try
             {
-                NotesEntity newNote = fundooContext.NotesTable.FirstOrDefault(x =>x.NoteId == noteId);
-                if (newNote != null)
+                
+                NotesEntity result = fundooContext.NotesTable.FirstOrDefault(x =>x.NoteId == noteId);
+                if (result != null)
                 {
-                    bool checkArchive = newNote.IsArchive;
+                    bool checkArchive = result.IsArchive;
                     if (checkArchive == true)
                     {
-                        newNote.IsArchive = false;
+                        result.IsArchive = false;
                     }
                     if (checkArchive == false)
                     {
-                        newNote.IsArchive = true;
+                        result.IsArchive = true;
                     }
+                    result.ModifiedAt = DateTime.Now;
                     fundooContext.SaveChanges();
-                    return newNote;
+                    return result;
                 }
                 else
                 {
@@ -254,12 +259,13 @@ namespace Repository_Layer.Service
         {
             try
             {
-                NotesEntity newNote = fundooContext.NotesTable.FirstOrDefault(x =>x.NoteId == noteId);
-                if (newNote != null)
+                NotesEntity result = fundooContext.NotesTable.FirstOrDefault(x =>x.NoteId == noteId);
+                if (result != null)
                 {
-                    newNote.Color = color;
+                    result.Color = color;
+                    result.ModifiedAt = DateTime.Now;
                     fundooContext.SaveChanges();
-                    return newNote;
+                    return result;
                 }
                 else
                 {
@@ -275,8 +281,8 @@ namespace Repository_Layer.Service
         {
             try
             {
-                NotesEntity newNote = fundooContext.NotesTable.FirstOrDefault(x => x.NoteId == noteId);
-                if (newNote != null)
+                NotesEntity result = fundooContext.NotesTable.FirstOrDefault(x => x.NoteId == noteId);
+                if (result != null)
                 {
                     Account account = new Account(
                        "dvsoczosd",
@@ -290,11 +296,45 @@ namespace Repository_Layer.Service
                     {
                         File = new FileDescription(image.FileName, imagepath),
                     };
-                    var result = cloudinary.Upload(uploadParams);
-                    newNote.Image = image.FileName;
-                    fundooContext.NotesTable.Update(newNote);
+                    var imageUploadParams = cloudinary.Upload(uploadParams);
+                    result.Image = image.FileName;
+                    fundooContext.NotesTable.Update(result);
+                    result.ModifiedAt = DateTime.Now;
                     fundooContext.SaveChanges();
-                    return newNote;
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public NotesEntity DeleteImage(long noteId)
+        {
+            try
+            {
+                NotesEntity result = fundooContext.NotesTable.FirstOrDefault(x => x.NoteId == noteId);
+                //Account account = new Account(
+                //       "dvsoczosd",
+                //       "353786361236396",
+                //       "pgMX18MD59iFk3ztUcDJi5YhWcE");
+
+                if (result != null)
+                {
+                    result.Image = null;
+                    //Cloudinary cloudinary = new Cloudinary(account);
+                    //var deletionParams = new DeletionParams("Image");
+                    //var result = cloudinary.Destroy(deletionParams);
+                    //fundooContext.NotesTable.Update(newNote);
+                    result.ModifiedAt = DateTime.Now;
+                    fundooContext.SaveChanges();
+                    return result;
                 }
                 else
                 {

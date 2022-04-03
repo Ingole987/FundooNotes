@@ -156,7 +156,18 @@ namespace Buisness_Layer.Service
             }
         }
 
+        public NotesEntity DeleteImage(long noteId)
+        {
+            try
+            {
+                return notesRL.DeleteImage(noteId);
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
+        }
     }
 
 }
