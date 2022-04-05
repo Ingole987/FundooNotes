@@ -329,7 +329,7 @@ namespace Repository_Layer.Service
                 {
                     result.Image = null;
                     //Cloudinary cloudinary = new Cloudinary(account);
-                    //var deletionParams = new DeletionParams("Image");
+                    //var deletionParams = new DeletionParams("image");
                     //var result = cloudinary.Destroy(deletionParams);
                     //fundooContext.NotesTable.Update(newNote);
                     result.ModifiedAt = DateTime.Now;

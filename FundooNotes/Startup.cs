@@ -67,9 +67,9 @@ namespace FundooNotes
                 option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-           .AddJwtBearer(jwt =>
+           .AddJwtBearer(option =>
            {
-               jwt.TokenValidationParameters = new TokenValidationParameters
+               option.TokenValidationParameters = new TokenValidationParameters
                {
                    ValidateIssuer = false,
                    ValidateAudience = false,

@@ -11,11 +11,8 @@ namespace Repository_Layer.Interface
     {
         public NotesEntity CreateNotes(UserNotes userNotes, long userId);
         public NotesEntity UpdateNotes(UpdateModel noteUpdate, long noteId);
-
         public bool DeleteNotes(long noteId);
-
         public IEnumerable<NotesEntity> GetNotes(long noteId);
-
         public IEnumerable<NotesEntity> GetNotesTableData();
         public NotesEntity IsPinned(long noteId);
         public NotesEntity IsTrash(long noteId);
