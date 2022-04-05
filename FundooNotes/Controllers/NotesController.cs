@@ -25,7 +25,7 @@ namespace FundooNotes.Controllers
             this.notesBL = notesBL;
         }
 
-        [HttpPost("CreateNotes")]
+        [HttpPost("Create")]
         public IActionResult CreateNotes(UserNotes userNotes)
         {
             try
@@ -40,7 +40,7 @@ namespace FundooNotes.Controllers
             catch (Exception)
             {
 
-                throw;
+                return NotFound(new { success = false, message = " Something went wrong" }); ;
             }
         }
 
@@ -61,11 +61,11 @@ namespace FundooNotes.Controllers
             catch (Exception)
             {
 
-                throw;
+                return NotFound(new { success = false, message = " Something went wrong" }); 
             }
         }
 
-        [HttpGet("Get/NotesID")]
+        [HttpGet("Get/{NotesID}")]
         public IActionResult GetNotes(long noteId)
         {
             try
@@ -82,27 +82,27 @@ namespace FundooNotes.Controllers
             catch (Exception)
             {
 
-                throw;
+                return NotFound(new { success = false, message = " Something went wrong" }); 
             }
 
         }
 
         [HttpGet("GetAllNotes")]
-        public IEnumerable<NotesEntity> GetNotesTableData()
+        public IActionResult GetNotesTableData()
         {
             try
             {
                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
                 var result = notesBL.GetNotesTableData();
                 if (result != null)
-                    return result;
+                    return (IActionResult)result;
                 else
                     return null;
             }
             catch (Exception)
             {
 
-                throw;
+                return NotFound(new { success = false, message = " Something went wrong" }); 
             }
         }
         [HttpDelete("Delete")]
@@ -122,7 +122,7 @@ namespace FundooNotes.Controllers
             catch (Exception)
             {
 
-                throw;
+                return NotFound(new { success = false, message = " Something went wrong" }); 
             }
         }
 
@@ -144,7 +144,7 @@ namespace FundooNotes.Controllers
             catch (Exception)
             {
 
-                throw;
+                return NotFound(new { success = false, message = " Something went wrong" }); 
             }
         }
 
@@ -166,7 +166,7 @@ namespace FundooNotes.Controllers
             catch (Exception)
             {
 
-                throw;
+                return NotFound(new { success = false, message = " Something went wrong" }); 
             }
         }
 
@@ -188,7 +188,7 @@ namespace FundooNotes.Controllers
             catch (Exception)
             {
 
-                throw;
+                return NotFound(new { success = false, message = " Something went wrong" }); 
             }
         }
 
@@ -209,11 +209,11 @@ namespace FundooNotes.Controllers
             catch (Exception)
             {
 
-                throw;
+                return NotFound(new { success = false, message = " Something went wrong" }); 
             }
         }
 
-        [HttpPost("Upload/Image")]
+        [HttpPost("Upload/{Image}")]
         public IActionResult UploadImage(long noteId, IFormFile image)
         {
             try
@@ -230,13 +230,13 @@ namespace FundooNotes.Controllers
             catch (Exception)
             {
 
-                throw;
+                return NotFound(new { success = false, message = " Something went wrong" }); 
             }
 
 
         }
 
-        [HttpDelete("Delete/Image")]
+        [HttpDelete("Delete/{Image}")]
         public IActionResult DeleteImage(long noteId)
         {
             try
@@ -253,7 +253,7 @@ namespace FundooNotes.Controllers
             catch (Exception)
             {
 
-                throw;
+                return NotFound(new { success = false, message = " Something went wrong" }); 
             }
 
 

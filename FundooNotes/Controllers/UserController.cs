@@ -30,9 +30,9 @@ namespace FundooNotes.Controllers
                 else
                     return BadRequest(new { success = false, message = "Registeration Failed EmailId Already Exist", data = resUser });
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                return NotFound(new { success = false, message = ex.Message });
+                return NotFound(new { success = false, message = " Something went wrong" });
             }
         }
 
@@ -47,9 +47,9 @@ namespace FundooNotes.Controllers
                 else
                     return this.BadRequest(new { Success = false, message = "Enter Valid Email and Password" });
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                return NotFound(new { success = false, message = ex.Message });
+                return NotFound(new { success = false, message = " Something went wrong" });
             }
         }
 
@@ -64,9 +64,9 @@ namespace FundooNotes.Controllers
                 else
                     return this.BadRequest(new { Success = false, message = "Enter Valid Email and Password" });
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                return NotFound(new { success = false, message = ex.Message });
+                return NotFound(new { success = false, message = " Something went wrong" });
             }
         }
 
@@ -83,9 +83,9 @@ namespace FundooNotes.Controllers
                 else
                     return this.BadRequest(new { Success = false, message = "Unable to Reset Password" });
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                return NotFound(new { success = false, message = ex.Message });
+                return NotFound(new { success = false, message = " Something went wrong" });
             }
         }
 

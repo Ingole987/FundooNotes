@@ -17,5 +17,4 @@ namespace Repository_Layer.Context
             public DbSet<CollabEntity> CollabTable { get; set; }
 
         }
-    
 }
