@@ -4,9 +4,7 @@ using System.Text;
 
 namespace Repository_Layer.Interface
 {
-    public class ICollabRL
+    internal interface Interface1
     {
-        public long CollabId { get; set; }
-        public string CollabEmailId { get; set; }
     }
 }
