@@ -285,9 +285,9 @@ namespace Repository_Layer.Service
                 if (result != null)
                 {
                     Account account = new Account(
-                       "dvsoczosd",
-                       "353786361236396",
-                       "pgMX18MD59iFk3ztUcDJi5YhWcE");
+                       "CloudName",
+                       "ApiKey",
+                       "SecKey");
 
                     Cloudinary cloudinary = new Cloudinary(account);
 
