@@ -1,5 +1,6 @@
 ﻿using Buisness_Layer.Interface;
 using Repository_Layer.Entity;
+using Repository_Layer.Interface;
 using Repository_Layer.Service;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,8 @@ namespace Buisness_Layer.Service
     public class CollabBL : ICollabBL
     {
         
-        private readonly ICollabBL collabRL;
-        public CollabBL(ICollabBL collabRL)
+        private readonly ICollabRL collabRL;
+        public CollabBL(ICollabRL collabRL)
         {
             this.collabRL = collabRL;
         }
