@@ -1,4 +1,5 @@
-﻿using Repository_Layer.Context;
+﻿using Common_Layer.Models;
+using Repository_Layer.Context;
 using Repository_Layer.Entity;
 using Repository_Layer.Interface;
 using System;
@@ -17,20 +18,27 @@ namespace Repository_Layer.Service
             this.fundooContext = fundooContext;
         }
 
-        public CollabEntity AddCollab(string email ,long userId , long noteId)
+        public CollabEntity AddCollab(NotesCollab notesCollab ,long userId)
         {
             try
             {
-                var result = fundooContext.UserTable.FirstOrDefault(x => x.Email == email);
-                if (result.Email == email)
+                var resCollab = fundooContext.UserTable.FirstOrDefault(x => x.Email == notesCollab.CollabEmailId);
+                if (resCollab != null)
                 {
-                    CollabEntity collabEntity = new CollabEntity() ;
-                    collabEntity.CollabEmailId = email;
-                    collabEntity.UserId = userId;
-                    collabEntity.NoteId = noteId;
-                    fundooContext.CollabTable.Add(collabEntity);
-                    fundooContext.SaveChanges();
-                    return collabEntity;
+                    CollabEntity newCollab = new CollabEntity() ;
+                    newCollab.CollabEmailId = notesCollab.CollabEmailId;
+                    newCollab.UserId = userId;
+                    newCollab.NoteId = notesCollab.NoteId;
+                    fundooContext.CollabTable.Add(newCollab);
+                    var result = fundooContext.SaveChanges();
+                    if (result > 0)
+                    {
+                        return newCollab;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
                 else
                 {

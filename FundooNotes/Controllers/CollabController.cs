@@ -1,4 +1,5 @@
 ﻿using Buisness_Layer.Interface;
+using Common_Layer.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
@@ -30,12 +31,12 @@ namespace FundooNotes.Controllers
         }
 
         [HttpPost("Collab")]
-        public IActionResult AddCollab(string email, long noteId)
+        public IActionResult AddCollab(NotesCollab notesCollab)
         {
             try
             {
                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
-                var result = collabBL.AddCollab(email, userId, noteId);
+                var result = collabBL.AddCollab(notesCollab, userId);
                 if (result != null)
                     return this.Ok(new { Success = true, message = "Collab Successfull", data = result });
                 else

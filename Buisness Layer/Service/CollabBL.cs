@@ -1,4 +1,5 @@
 ﻿using Buisness_Layer.Interface;
+using Common_Layer.Models;
 using Repository_Layer.Entity;
 using Repository_Layer.Interface;
 using Repository_Layer.Service;
@@ -18,11 +19,11 @@ namespace Buisness_Layer.Service
         }
         
 
-        public CollabEntity AddCollab(string email, long userId, long noteId)
+        public CollabEntity AddCollab(NotesCollab notesCollab, long userId)
         {
             try
             {
-                return collabRL.AddCollab(email, userId , noteId);
+                return collabRL.AddCollab(notesCollab, userId);
             }
             catch (Exception ex)
             {
