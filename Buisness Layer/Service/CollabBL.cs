@@ -49,7 +49,7 @@ namespace Buisness_Layer.Service
             try
             {
 
-                return collabRL.GetCollab(noteId);
+                return collabRL.GetCollab();
             }
             catch (Exception ex)
             {

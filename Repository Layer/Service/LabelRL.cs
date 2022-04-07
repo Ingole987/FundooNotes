@@ -1,4 +1,5 @@
-﻿using Repository_Layer.Context;
+﻿using Common_Layer.Models;
+using Repository_Layer.Context;
 using Repository_Layer.Entity;
 using Repository_Layer.Interface;
 using System;
@@ -18,19 +19,27 @@ namespace Repository_Layer.Service
         }
 
 
-        public LabelEntity AddLabel(string label, long userId, long noteId)
+        public LabelEntity AddLabel(NotesLabel noteslabel , long userId)
         {
             try
             {
-                LabelEntity newLabel = new LabelEntity();
-                newLabel.Label = label;
-                newLabel.UserId = userId;
-                newLabel.NoteId = noteId;
-                fundooContext.LabelTable.Add(newLabel);
-                int result = fundooContext.SaveChanges();
-                if (result > 0)
+                var resLabel = fundooContext.LabelTable.Where(e => e.UserId == userId).FirstOrDefault();
+                if (resLabel != null)
                 {
-                    return newLabel;
+                    LabelEntity newLabel = new LabelEntity();
+                    newLabel.Label = noteslabel.Label;
+                    newLabel.NoteId = noteslabel.NoteId;
+                    newLabel.UserId = userId;
+                    fundooContext.LabelTable.Add(newLabel);
+                    int result = fundooContext.SaveChanges();
+                    if (result > 0)
+                    {
+                        return newLabel;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
                 else
                 {
@@ -112,6 +121,27 @@ namespace Repository_Layer.Service
                 throw;
             }
 
+        }
+
+        public IEnumerable<LabelEntity> GetLabelTableData()
+        {
+            try
+            {
+                var result = fundooContext.LabelTable.ToList();
+                if (result != null)
+                {
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

@@ -83,6 +83,11 @@ namespace FundooNotes
                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration["Jwt:SecurityKey"])) 
                 };
            });
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = "localhost:6379";
+            });
+            services.AddMemoryCache();
             services.AddControllers();
         }
 

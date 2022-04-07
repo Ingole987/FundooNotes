@@ -6,5 +6,7 @@ namespace Common_Layer.Models
 {
     public class NotesLabel
     {
+        public string Label { get; set; }
+        public long NoteId { get; set; }
     }
 }
