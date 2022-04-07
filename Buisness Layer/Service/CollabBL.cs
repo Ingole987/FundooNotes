@@ -24,7 +24,7 @@ namespace Buisness_Layer.Service
             {
                 return collabRL.AddCollab(email, userId , noteId);
             }
-                catch (Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -32,44 +32,30 @@ namespace Buisness_Layer.Service
 
         public bool DeleteCollab(long collabId)
         {
-        try
-        {
+            try
+            {
 
-        return collabRL.DeleteCollab(collabId);
-        }
-        catch (Exception ex)
-        {
+                return collabRL.DeleteCollab(collabId);
+            }
+            catch (Exception ex)
+            {
 
-        throw ex;
-        }
-        }
-
-        public IEnumerable<CollabEntity> GetCollab(long noteId)
-        {
-        try
-        {
-
-        return collabRL.GetCollab(noteId);
-        }
-        catch (Exception ex)
-        {
-
-        throw ex;
-        }
+                throw ex;
+            }
         }
 
-        public IEnumerable<CollabEntity> GetCollabTableData()
+        public IEnumerable<CollabEntity> GetCollab()
         {
-        try
-        {
+            try
+            {
 
-        return collabRL.GetCollabTableData();
-        }
-        catch (Exception ex)
-        {
+                return collabRL.GetCollab(noteId);
+            }
+            catch (Exception ex)
+            {
 
-        throw ex;
-        }
+                throw ex;
+            }
         }
     }
 }

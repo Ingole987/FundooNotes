@@ -1,10 +1,9 @@
-﻿
-using System;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Repository_Layer.Migrations
 {
-    public partial class NotesApplication : Migration
+    public partial class NotesApp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

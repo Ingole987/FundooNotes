@@ -2,31 +2,31 @@
 
 namespace Repository_Layer.Migrations
 {
-    public partial class CollabFuntionality : Migration
+    public partial class LabelApp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "CollabTable",
+                name: "LabelTable",
                 columns: table => new
                 {
-                    CollabId = table.Column<long>(nullable: false)
+                    LabelId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CollabEmailId = table.Column<string>(nullable: true),
+                    Label = table.Column<string>(nullable: true),
                     UserId = table.Column<long>(nullable: false),
                     NoteId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CollabTable", x => x.CollabId);
+                    table.PrimaryKey("PK_LabelTable", x => x.LabelId);
                     table.ForeignKey(
-                        name: "FK_CollabTable_NotesTable_NoteId",
+                        name: "FK_LabelTable_NotesTable_NoteId",
                         column: x => x.NoteId,
                         principalTable: "NotesTable",
                         principalColumn: "NoteId",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_CollabTable_UserTable_UserId",
+                        name: "FK_LabelTable_UserTable_UserId",
                         column: x => x.UserId,
                         principalTable: "UserTable",
                         principalColumn: "UserId",
@@ -34,20 +34,20 @@ namespace Repository_Layer.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CollabTable_NoteId",
-                table: "CollabTable",
+                name: "IX_LabelTable_NoteId",
+                table: "LabelTable",
                 column: "NoteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CollabTable_UserId",
-                table: "CollabTable",
+                name: "IX_LabelTable_UserId",
+                table: "LabelTable",
                 column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CollabTable");
+                name: "LabelTable");
         }
     }
 }

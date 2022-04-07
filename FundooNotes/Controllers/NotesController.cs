@@ -61,28 +61,26 @@ namespace FundooNotes.Controllers
             catch (Exception)
             {
 
-                return NotFound(new { success = false, message = " Something went wrong" }); 
+                return this.NotFound(new { success = false, message = " Something went wrong" });
             }
         }
 
-        [HttpGet("Get/{NotesID}")]
+        [HttpGet("Get")]
         public IActionResult GetNotes(long noteId)
         {
             try
             {
                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
-                if (noteId <= 0)
-                    return BadRequest(new { success = false, message = "Note Id Should Be Greater Than Zero" });
                 var result = notesBL.GetNotes(noteId);
                 if (result != null)
-                    return (IActionResult)result;
+                    return this.Ok(new { Success = true, data = result });
                 else
-                    return null;
+                    return this.BadRequest(new { Success = false, });
             }
             catch (Exception)
             {
 
-                return NotFound(new { success = false, message = " Something went wrong" }); 
+                return NotFound(new { success = false, message = " Something went wrong" }); ;
             }
 
         }
@@ -95,15 +93,16 @@ namespace FundooNotes.Controllers
                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
                 var result = notesBL.GetNotesTableData();
                 if (result != null)
-                    return (IActionResult)result;
+                    return this.Ok(new { Success = true, data = result });
                 else
-                    return null;
+                    return this.BadRequest(new { Success = false, });
             }
             catch (Exception)
             {
 
-                return NotFound(new { success = false, message = " Something went wrong" }); 
+                return NotFound(new { success = false, message = " Something went wrong" }); ;
             }
+
         }
         [HttpDelete("Delete")]
         public IActionResult DeleteNotes(long noteId)
@@ -122,7 +121,7 @@ namespace FundooNotes.Controllers
             catch (Exception)
             {
 
-                return NotFound(new { success = false, message = " Something went wrong" }); 
+                return NotFound(new { success = false, message = " Something went wrong" });
             }
         }
 
@@ -144,7 +143,7 @@ namespace FundooNotes.Controllers
             catch (Exception)
             {
 
-                return NotFound(new { success = false, message = " Something went wrong" }); 
+                return NotFound(new { success = false, message = " Something went wrong" });
             }
         }
 
@@ -166,7 +165,7 @@ namespace FundooNotes.Controllers
             catch (Exception)
             {
 
-                return NotFound(new { success = false, message = " Something went wrong" }); 
+                return NotFound(new { success = false, message = " Something went wrong" });
             }
         }
 
@@ -188,7 +187,7 @@ namespace FundooNotes.Controllers
             catch (Exception)
             {
 
-                return NotFound(new { success = false, message = " Something went wrong" }); 
+                return NotFound(new { success = false, message = " Something went wrong" });
             }
         }
 
@@ -209,7 +208,7 @@ namespace FundooNotes.Controllers
             catch (Exception)
             {
 
-                return NotFound(new { success = false, message = " Something went wrong" }); 
+                return NotFound(new { success = false, message = " Something went wrong" });
             }
         }
 
@@ -230,7 +229,7 @@ namespace FundooNotes.Controllers
             catch (Exception)
             {
 
-                return NotFound(new { success = false, message = " Something went wrong" }); 
+                return NotFound(new { success = false, message = " Something went wrong" });
             }
 
 
@@ -246,14 +245,14 @@ namespace FundooNotes.Controllers
                     return BadRequest(new { success = false, message = "Note Id Should Be Greater Than Zero" });
                 var result = notesBL.DeleteImage(noteId);
                 if (result != null)
-                    return this.Ok(new { Success = true, message = "Image Deleted successfully", data = result }  );
+                    return this.Ok(new { Success = true, message = "Image Deleted successfully", data = result });
                 else
                     return this.BadRequest(new { Success = false, message = "Image Delete fail" });
             }
             catch (Exception)
             {
 
-                return NotFound(new { success = false, message = " Something went wrong" }); 
+                return NotFound(new { success = false, message = " Something went wrong" });
             }
 
 

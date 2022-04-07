@@ -51,9 +51,6 @@ namespace Repository_Layer.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CollabId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("Label")
                         .HasColumnType("nvarchar(max)");
 
@@ -64,8 +61,6 @@ namespace Repository_Layer.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("LabelId");
-
-                    b.HasIndex("CollabId");
 
                     b.HasIndex("NoteId");
 
@@ -162,12 +157,6 @@ namespace Repository_Layer.Migrations
 
             modelBuilder.Entity("Repository_Layer.Entity.LabelEntity", b =>
                 {
-                    b.HasOne("Repository_Layer.Entity.CollabEntity", "Collab")
-                        .WithMany()
-                        .HasForeignKey("CollabId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Repository_Layer.Entity.NotesEntity", "Note")
                         .WithMany()
                         .HasForeignKey("NoteId")

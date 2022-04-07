@@ -45,10 +45,10 @@ namespace Buisness_Layer.Service
                 throw ex;
             }
         }
-        
 
 
-        
+
+
         public IEnumerable<NotesEntity> GetNotes(long noteId)
         {
             try
@@ -63,7 +63,7 @@ namespace Buisness_Layer.Service
             }
         }
 
-        
+
         public IEnumerable<NotesEntity> GetNotesTableData()
         {
             try

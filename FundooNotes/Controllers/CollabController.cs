@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace FundooNotes.Controllers
 {
-    
+
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
@@ -20,12 +20,12 @@ namespace FundooNotes.Controllers
         }
 
         [HttpPost("Collab")]
-        public IActionResult AddCollab(string email,long noteId)
+        public IActionResult AddCollab(string email, long noteId)
         {
             try
             {
                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
-                var result = collabBL.AddCollab(email,userId,noteId);
+                var result = collabBL.AddCollab(email, userId, noteId);
                 if (result != null)
                     return this.Ok(new { Success = true, message = "Collab Successfull", data = result });
                 else
@@ -38,16 +38,16 @@ namespace FundooNotes.Controllers
             }
         }
         [HttpPost("Get")]
-        public IActionResult GetCollab(long noteId)
+        public IActionResult GetCollab()
         {
             try
             {
                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
-                var result = collabBL.GetCollab(noteId);
+                var result = collabBL.GetCollab();
                 if (result != null)
-                    return this.Ok(new { Success = true,data = result });
+                    return this.Ok(new { Success = true, data = result });
                 else
-                    return this.BadRequest(new { Success = false,});
+                    return this.BadRequest(new { Success = false, });
             }
             catch (Exception)
             {
@@ -73,22 +73,6 @@ namespace FundooNotes.Controllers
                 return NotFound(new { success = false, message = " Something went wrong" }); ;
             }
         }
-        [HttpPost("GetAll")]
-        public IActionResult GetCollabTableData()
-        {
-            try
-            {
-                long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
-                var result = collabBL.GetCollabTableData();
-                if (result != null)
-                    return this.Ok(new { Success = true,data = result });
-                else
-                    return this.BadRequest(new { Success = false,});
-            }
-            catch (Exception)
-            {
-                return NotFound(new { success = false, message = " Something went wrong" }); ;
-            }
-        }
+        
     }
 }

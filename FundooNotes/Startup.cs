@@ -1,3 +1,4 @@
+
 using Buisness_Layer.Interface;
 using Buisness_Layer.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -40,6 +41,8 @@ namespace FundooNotes
             services.AddTransient<INotesRL, NotesRL>();
             services.AddTransient<ICollabBL, CollabBL>();
             services.AddTransient<ICollabRL, CollabRL>();
+            services.AddTransient<ILabelBL, LabelBL>();
+            services.AddTransient<ILabelRL, LabelRL>();
             services.AddSwaggerGen(s =>
             {
                 s.SwaggerDoc("v1", new OpenApiInfo { Title = "Welcome to FundooNotes" });

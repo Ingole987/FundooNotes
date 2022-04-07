@@ -30,7 +30,7 @@ namespace FundooNotes.Controllers
                 else
                     return BadRequest(new { success = false, message = "Registeration Failed EmailId Already Exist", data = resUser });
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return NotFound(new { success = false, message = " Something went wrong" });
             }
@@ -43,11 +43,11 @@ namespace FundooNotes.Controllers
             {
                 var resUser = userBL.Login(userLog);
                 if (resUser != null)
-                    return this.Ok(new { Success = true, message = "Logged In", data = resUser});
+                    return this.Ok(new { Success = true, message = "Logged In", data = resUser });
                 else
                     return this.BadRequest(new { Success = false, message = "Enter Valid Email and Password" });
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return NotFound(new { success = false, message = " Something went wrong" });
             }
@@ -64,7 +64,7 @@ namespace FundooNotes.Controllers
                 else
                     return this.BadRequest(new { Success = false, message = "Enter Valid Email and Password" });
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return NotFound(new { success = false, message = " Something went wrong" });
             }
@@ -77,13 +77,13 @@ namespace FundooNotes.Controllers
             try
             {
                 var email = User.FindFirst(ClaimTypes.Email).Value.ToString();
-                var resUser = userBL.ResetPassword(resetPassword,email);
+                var resUser = userBL.ResetPassword(resetPassword, email);
                 if (resUser != null)
                     return this.Ok(new { Success = true, message = "Password Changed Successfully" });
                 else
                     return this.BadRequest(new { Success = false, message = "Unable to Reset Password" });
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return NotFound(new { success = false, message = " Something went wrong" });
             }
@@ -92,5 +92,5 @@ namespace FundooNotes.Controllers
 
     }
 }
-    
+
 

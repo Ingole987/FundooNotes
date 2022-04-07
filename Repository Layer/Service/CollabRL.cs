@@ -71,31 +71,7 @@ namespace Repository_Layer.Service
 
         }
 
-        public IEnumerable<CollabEntity> GetCollab(long noteId)
-        {
-            try
-            {
-                var result = fundooContext.CollabTable.Where(x => x.NoteId == noteId).ToList();
-                if (result != null)
-                {
-                    return result;
-                }
-                else
-                {
-                    return null;
-
-
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
-
-        public IEnumerable<CollabEntity> GetCollabTableData()
+        public IEnumerable<CollabEntity> GetCollab()
         {
             try
             {
@@ -116,6 +92,8 @@ namespace Repository_Layer.Service
 
                 throw;
             }
+
         }
+
     }
 }

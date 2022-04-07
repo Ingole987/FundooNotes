@@ -9,7 +9,7 @@ namespace Buisness_Layer.Interface
     {
         public CollabEntity AddCollab(string email, long userId, long noteId);
         public bool DeleteCollab(long collabId);
-        public IEnumerable<CollabEntity> GetCollab(long noteId);
-        public IEnumerable<CollabEntity> GetCollabTableData();
+        public IEnumerable<CollabEntity> GetCollab();
+        
     }
 }

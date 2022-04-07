@@ -2,7 +2,7 @@
 
 namespace Repository_Layer.Migrations
 {
-    public partial class UserTable : Migration
+    public partial class UserApp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

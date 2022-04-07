@@ -24,9 +24,5 @@ namespace Repository_Layer.Entity
         public long NoteId { get; set; }
         public virtual NotesEntity Note { get; set; }
 
-        [JsonIgnore]
-        [ForeignKey("Collab")]
-        public long CollabId { get; set; }
-        public virtual CollabEntity Collab { get; set; }
     }
 }
