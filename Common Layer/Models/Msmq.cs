@@ -10,7 +10,10 @@ namespace Common_Layer.Models
     public class Msmq
     {
         MessageQueue messageQueue = new MessageQueue();
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="token"></param>
         public void SendMessage(string token)
         {
             messageQueue.Path = @".\private$\Tokens";

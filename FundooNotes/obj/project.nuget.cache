@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "T5q9/JMnE5L6DKD0gwbGf127wK6eB5vpFuEpmL8iP2gpJF/NKP3NhUKUpHkfydeQJPd+vfHUtMfxNwVBeGmOPg==",
+  "dgSpecHash": "kOaUbbZM7URP83Ob2AI/B4TZhxR+CEN13Bjqx74h4/+ZjFdAKlSl9Wyrd/dH6vv0PsQgs4YG0hHWz8yDy65iJA==",
   "success": true,
   "projectFilePath": "C:\\Users\\prati\\source\\repos\\FundooNotes\\FundooNotes\\FundooNotes.csproj",
   "expectedPackageFiles": [
@@ -50,6 +50,9 @@
     "C:\\Users\\prati\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\prati\\.nuget\\packages\\mongodb.bson\\2.11.3\\mongodb.bson.2.11.3.nupkg.sha512",
     "C:\\Users\\prati\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\prati\\.nuget\\packages\\nlog\\4.7.11\\nlog.4.7.11.nupkg.sha512",
+    "C:\\Users\\prati\\.nuget\\packages\\nlog.extensions.logging\\1.7.4\\nlog.extensions.logging.1.7.4.nupkg.sha512",
+    "C:\\Users\\prati\\.nuget\\packages\\nlog.web.aspnetcore\\4.14.0\\nlog.web.aspnetcore.4.14.0.nupkg.sha512",
     "C:\\Users\\prati\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.0\\pipelines.sockets.unofficial.2.2.0.nupkg.sha512",
     "C:\\Users\\prati\\.nuget\\packages\\realm\\10.11.0\\realm.10.11.0.nupkg.sha512",
     "C:\\Users\\prati\\.nuget\\packages\\realm.fody\\10.11.0\\realm.fody.10.11.0.nupkg.sha512",
