@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "4d01a4f6-5c45-4698-a2f5-8e95dcfac575": {
+      "ProjectGuid": "4d01a4f6-5c45-4698-a2f5-8e95dcfac575",
+      "DisplayName": "Ticketing",
+      "ColorIndex": 0
+    },
+    "c64da941-1f80-4d73-9fbd-ec9f6597e335": {
+      "ProjectGuid": "c64da941-1f80-4d73-9fbd-ec9f6597e335",
+      "DisplayName": "Order_Processing",
+      "ColorIndex": 1
+    },
+    "fa87763f-e028-4ca8-8e7a-937fd362f2f0": {
+      "ProjectGuid": "fa87763f-e028-4ca8-8e7a-937fd362f2f0",
+      "DisplayName": "Order Processing",
+      "ColorIndex": 2
+    },
+    "7f65c330-2e7d-48ee-91ea-b92b09253226": {
+      "ProjectGuid": "7f65c330-2e7d-48ee-91ea-b92b09253226",
+      "DisplayName": "Order_Processing",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}
