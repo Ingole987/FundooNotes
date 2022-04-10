@@ -13,7 +13,7 @@ using System.Security.Claims;
 using System.Text;
 using Xamarin.Essentials;
 using System.IO;
-
+using System.Security.Cryptography;
 
 namespace Repository_Layer.Service
 {
@@ -36,7 +36,7 @@ namespace Repository_Layer.Service
                 userEntity.FirstName = userReg.FirstName;
                 userEntity.LastName = userReg.LastName;
                 userEntity.Email = userReg.Email;
-                userEntity.Password = userReg.Password;
+                userEntity.Password = EncryptPassword(userReg.Password);
                 fundooContext.UserTable.Add(userEntity);
                 int res = fundooContext.SaveChanges();
                 if (res > 0)
@@ -54,21 +54,31 @@ namespace Repository_Layer.Service
         {
             try
             {
-                var LoginResult = this.fundooContext.UserTable.Where(x => x.Email == userLog.Email
-            && x.Password == userLog.Password).FirstOrDefault();
-                if (LoginResult != null)
+                var LoginResult = this.fundooContext.UserTable.Where(x => x.Email == userLog.Email && x.Password == userLog.Password).FirstOrDefault();
+                var decryptPass = DecryptPassword(LoginResult.Password);
+                if (decryptPass == userLog.Password)
                 {
-                    var token = GenerateSecurityToken(LoginResult.Email, LoginResult.UserId);
-                    UserLogin login = new UserLogin();
+                    if (LoginResult != null)
+                    {
+                        var token = GenerateSecurityToken(LoginResult.Email, LoginResult.UserId);
+                        UserLogin login = new UserLogin();
 
-                    login.Email = LoginResult.Email;
-                    login.Token = token;
+                        login.Email = LoginResult.Email;
+                        login.Token = token;
 
-                    return login;
-                }
-                else
-                    return null;
+                        return login;
+                    }
+                    else
+                    {
+                        return null;
+                    }
             }
+                else
+                {
+                    return null;
+                }
+
+        }
             catch (Exception ex)
             {
                 throw ex;
@@ -123,6 +133,7 @@ namespace Repository_Layer.Service
                 {
                     var user = fundooContext.UserTable.Where(e => e.Email == email).FirstOrDefault();
                     user.Password = resetPassword.ConfirmPassword;
+                    user.Password = EncryptPassword(user.Password);
                     fundooContext.SaveChanges();
                     return true;
                 }
@@ -137,6 +148,27 @@ namespace Repository_Layer.Service
                 throw;
             }
 
+        }
+
+        private string EncryptPassword(string password)
+        {
+            string enteredpassword = "";
+            byte[] hide = new byte[password.Length];
+            hide = Encoding.UTF8.GetBytes(password);
+            enteredpassword = Convert.ToBase64String(hide);
+            return enteredpassword;
+        }
+        private string DecryptPassword(string encryptpwd)
+        {
+            string decryptpwd = string.Empty;
+            UTF8Encoding encodepwd = new UTF8Encoding();
+            Decoder Decode = encodepwd.GetDecoder();
+            byte[] todecode_byte = Convert.FromBase64String(encryptpwd);
+            int charCount = Decode.GetCharCount(todecode_byte, 0, todecode_byte.Length);
+            char[] decoded_char = new char[charCount];
+            Decode.GetChars(todecode_byte, 0, todecode_byte.Length, decoded_char, 0);
+            decryptpwd = new String(decoded_char);
+            return decryptpwd;
         }
 
 

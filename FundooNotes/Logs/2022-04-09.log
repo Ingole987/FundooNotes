@@ -1,0 +1,10 @@
+2022-04-09 08:22:03.5933 WARN Connection Failed: rabbitmq://localhost/
+2022-04-09 08:22:03.7305 INFO Application started. Press Ctrl+C to shut down.
+2022-04-09 08:22:03.7305 INFO Hosting environment: Development
+2022-04-09 08:22:03.7372 INFO Content root path: C:\Users\prati\source\repos\FundooNotes\FundooNotes
+2022-04-09 08:22:03.7919 INFO Bus stopped: rabbitmq://localhost/
+2022-04-09 09:18:11.0012 INFO Application started. Press Ctrl+C to shut down.
+2022-04-09 09:18:11.0012 WARN Connection Failed: rabbitmq://localhost/
+2022-04-09 09:18:11.0296 INFO Hosting environment: Development
+2022-04-09 09:18:11.0319 INFO Content root path: C:\Users\prati\source\repos\FundooNotes\FundooNotes
+2022-04-09 09:18:11.1279 INFO Bus stopped: rabbitmq://localhost/
