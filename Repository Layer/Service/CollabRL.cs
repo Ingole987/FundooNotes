@@ -12,12 +12,20 @@ namespace Repository_Layer.Service
     public class CollabRL : ICollabRL
     {
         private readonly FundooContext fundooContext;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fundooContext"></param>
         public CollabRL(FundooContext fundooContext)
         {
             this.fundooContext = fundooContext;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="notesCollab"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public CollabEntity AddCollab(NotesCollab notesCollab ,long userId)
         {
             try
@@ -53,7 +61,11 @@ namespace Repository_Layer.Service
             }
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="collabId"></param>
+        /// <returns></returns>
         public bool DeleteCollab(long collabId)
         {
             try
@@ -78,7 +90,10 @@ namespace Repository_Layer.Service
             }
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<CollabEntity> GetCollab()
         {
             try

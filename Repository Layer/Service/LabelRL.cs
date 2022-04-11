@@ -12,13 +12,20 @@ namespace Repository_Layer.Service
     public class LabelRL : ILabelRL
     {
         private readonly FundooContext fundooContext;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fundooContext"></param>
         public LabelRL(FundooContext fundooContext)
         {
             this.fundooContext = fundooContext;
         }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="noteslabel"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public LabelEntity AddLabel(NotesLabel noteslabel , long userId)
         {
             try
@@ -52,7 +59,13 @@ namespace Repository_Layer.Service
                 throw;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="label"></param>
+        /// <param name="userId"></param>
+        /// <param name="labelId"></param>
+        /// <returns></returns>
         public LabelEntity Update(string label, long userId, long labelId)
         {
             try
@@ -76,7 +89,11 @@ namespace Repository_Layer.Service
                 throw;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="labelId"></param>
+        /// <returns></returns>
         public bool Delete(long labelId)
         {
             try
@@ -99,6 +116,11 @@ namespace Repository_Layer.Service
                 throw;
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <returns></returns>
         public IEnumerable<LabelEntity> GetLabel(long noteId)
         {
             try
@@ -122,7 +144,10 @@ namespace Repository_Layer.Service
             }
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<LabelEntity> GetLabelTableData()
         {
             try

@@ -14,14 +14,24 @@ namespace Repository_Layer.Service
 {
     public class NotesRL : INotesRL
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly FundooContext fundooContext;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fundooContext"></param>
         public NotesRL(FundooContext fundooContext)
         {
             this.fundooContext = fundooContext;
         }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userNotes"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public NotesEntity CreateNotes(UserNotes userNotes, long userId)
         {
             try
@@ -57,7 +67,12 @@ namespace Repository_Layer.Service
 
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="noteUpdate"></param>
+        /// <param name="noteId"></param>
+        /// <returns></returns>
         public NotesEntity UpdateNotes(UpdateModel noteUpdate, long noteId)
         {
             try
@@ -85,7 +100,11 @@ namespace Repository_Layer.Service
                 throw;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <returns></returns>
         public IEnumerable<NotesEntity> GetNotes(long noteId)
         {
             try
@@ -109,8 +128,10 @@ namespace Repository_Layer.Service
             }
 
         }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<NotesEntity> GetNotesTableData()
         {
             try
@@ -133,8 +154,11 @@ namespace Repository_Layer.Service
                 throw;
             }
         }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <returns></returns>
         public bool DeleteNotes(long noteId)
         {
             try
@@ -158,7 +182,11 @@ namespace Repository_Layer.Service
                 throw;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <returns></returns>
         public NotesEntity IsPinned(long noteId)
         {
             try
@@ -191,6 +219,11 @@ namespace Repository_Layer.Service
                 throw;
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <returns></returns>
         public NotesEntity IsTrash(long noteId)
         {
             try
@@ -223,6 +256,11 @@ namespace Repository_Layer.Service
                 throw;
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <returns></returns>
         public NotesEntity IsArchive(long noteId)
         {
             try
@@ -254,7 +292,12 @@ namespace Repository_Layer.Service
                 throw;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <param name="color"></param>
+        /// <returns></returns>
         public NotesEntity ColorChange(long noteId, string color)
         {
             try
@@ -277,6 +320,12 @@ namespace Repository_Layer.Service
                 throw;
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <param name="image"></param>
+        /// <returns></returns>
         public NotesEntity UploadImage(long noteId, IFormFile image)
         {
             try
@@ -314,7 +363,11 @@ namespace Repository_Layer.Service
                 throw;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <returns></returns>
         public NotesEntity DeleteImage(long noteId)
         {
             try

@@ -17,7 +17,11 @@ namespace Repository_Layer.Service
         {
             _next = next;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public async Task Invoke(HttpContext context)
         {
             try

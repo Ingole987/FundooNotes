@@ -11,6 +11,11 @@ namespace Repository_Layer.Service
         {
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="FundooException"></exception>
+        /// <exception cref="KeyNotFoundException"></exception>
         public void ExampleErrors()
         {
             //// a custom app exception that will return a 400 response

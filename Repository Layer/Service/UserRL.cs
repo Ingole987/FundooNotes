@@ -18,17 +18,29 @@ using Common_Layer;
 
 namespace Repository_Layer.Service
 {
+    
     public class UserRL : IUserRL
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly FundooContext fundooContext;
         private readonly IConfiguration _appSettings;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fundooContext"></param>
+        /// <param name="_appSettings"></param>
         public UserRL(FundooContext fundooContext, IConfiguration _appSettings)
         {
             this.fundooContext = fundooContext;
             this._appSettings = _appSettings;
         }
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userReg"></param>
+        /// <returns></returns>
         public UserEntity Register(UserReg userReg)
         {
             try
@@ -50,7 +62,11 @@ namespace Repository_Layer.Service
                 throw ex;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userLog"></param>
+        /// <returns></returns>
         public UserLogin Login(UserLog userLog)
         {
             try
@@ -91,7 +107,12 @@ namespace Repository_Layer.Service
             }
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         private string GenerateSecurityToken(string email, long userId)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings["Jwt:SecurityKey"]));
@@ -107,7 +128,11 @@ namespace Repository_Layer.Service
             signingCredentials: credentials);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public string ForgotPassword(string email)
         {
             try
@@ -131,7 +156,12 @@ namespace Repository_Layer.Service
 
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="resetPassword"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public bool ResetPassword(ResetPassword resetPassword , string email)
         {
             try
@@ -157,7 +187,11 @@ namespace Repository_Layer.Service
             }
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
         private string EncryptPassword(string password)
         {
             string enteredpassword = "";
@@ -166,6 +200,11 @@ namespace Repository_Layer.Service
             enteredpassword = Convert.ToBase64String(hide);
             return enteredpassword;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="encryptpwd"></param>
+        /// <returns></returns>
         private string DecryptPassword(string encryptpwd)
         {
             string decryptpwd = string.Empty;

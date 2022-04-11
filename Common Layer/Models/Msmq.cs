@@ -34,7 +34,11 @@ namespace Common_Layer.Models
                 throw;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MessageQueue_ReceiveCompleted(object sender, ReceiveCompletedEventArgs e)
         {
             var message = messageQueue.EndReceive(e.AsyncResult);
