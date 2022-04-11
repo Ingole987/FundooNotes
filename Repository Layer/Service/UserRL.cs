@@ -14,6 +14,7 @@ using System.Text;
 using Xamarin.Essentials;
 using System.IO;
 using System.Security.Cryptography;
+using Common_Layer;
 
 namespace Repository_Layer.Service
 {
@@ -54,6 +55,10 @@ namespace Repository_Layer.Service
         {
             try
             {
+                if (string.IsNullOrEmpty(userLog.Email) || string.IsNullOrEmpty(userLog.Password))
+                {
+                    throw new FundooException("Email or password is incorrect");
+                }
                 var LoginResult = this.fundooContext.UserTable.Where(x => x.Email == userLog.Email && x.Password == userLog.Password).FirstOrDefault();
                 var decryptPass = DecryptPassword(LoginResult.Password);
                 if (decryptPass == userLog.Password)
@@ -71,6 +76,7 @@ namespace Repository_Layer.Service
                     else
                     {
                         return null;
+                        
                     }
             }
                 else
@@ -115,7 +121,8 @@ namespace Repository_Layer.Service
                 }
                 else
                 {
-                    return null;
+                    //return null;
+                    throw new FundooException("Account not found");
                 }
             }
             catch (Exception)
@@ -140,7 +147,8 @@ namespace Repository_Layer.Service
                 else
                 {
 
-                    return false;
+                    // return false;
+                    throw new FundooException("Cannot use previous Password");
                 }
             }
             catch (Exception)

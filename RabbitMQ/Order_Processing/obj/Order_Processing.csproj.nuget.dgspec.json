@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\prati\\source\\repos\\RabbitMQ\\Order_Processing\\Order_Processing.csproj": {}
+    "C:\\Users\\prati\\source\\repos\\FundooNotes\\RabbitMQ\\Order_Processing\\Order_Processing.csproj": {}
   },
   "projects": {
-    "C:\\Users\\prati\\source\\repos\\RabbitMQ\\Order_Processing\\Order_Processing.csproj": {
+    "C:\\Users\\prati\\source\\repos\\FundooNotes\\RabbitMQ\\Order_Processing\\Order_Processing.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\prati\\source\\repos\\RabbitMQ\\Order_Processing\\Order_Processing.csproj",
+        "projectUniqueName": "C:\\Users\\prati\\source\\repos\\FundooNotes\\RabbitMQ\\Order_Processing\\Order_Processing.csproj",
         "projectName": "Order_Processing",
-        "projectPath": "C:\\Users\\prati\\source\\repos\\RabbitMQ\\Order_Processing\\Order_Processing.csproj",
+        "projectPath": "C:\\Users\\prati\\source\\repos\\FundooNotes\\RabbitMQ\\Order_Processing\\Order_Processing.csproj",
         "packagesPath": "C:\\Users\\prati\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\prati\\source\\repos\\RabbitMQ\\Order_Processing\\obj\\",
+        "outputPath": "C:\\Users\\prati\\source\\repos\\FundooNotes\\RabbitMQ\\Order_Processing\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\prati\\AppData\\Roaming\\NuGet\\NuGet.Config",

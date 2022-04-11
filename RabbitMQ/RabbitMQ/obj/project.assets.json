@@ -5992,11 +5992,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\prati\\source\\repos\\RabbitMQ\\RabbitMQ\\Ticketing.csproj",
+      "projectUniqueName": "C:\\Users\\prati\\source\\repos\\FundooNotes\\RabbitMQ\\RabbitMQ\\Ticketing.csproj",
       "projectName": "Ticketing",
-      "projectPath": "C:\\Users\\prati\\source\\repos\\RabbitMQ\\RabbitMQ\\Ticketing.csproj",
+      "projectPath": "C:\\Users\\prati\\source\\repos\\FundooNotes\\RabbitMQ\\RabbitMQ\\Ticketing.csproj",
       "packagesPath": "C:\\Users\\prati\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\prati\\source\\repos\\RabbitMQ\\RabbitMQ\\obj\\",
+      "outputPath": "C:\\Users\\prati\\source\\repos\\FundooNotes\\RabbitMQ\\RabbitMQ\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\prati\\AppData\\Roaming\\NuGet\\NuGet.Config",
